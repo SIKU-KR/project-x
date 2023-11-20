@@ -1,94 +1,93 @@
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
 
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    height: 100%;
-    font-family: 'Do Hyeon', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  font-family: "Do Hyeon", sans-serif;
 }
 
 .dropset {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .pair {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    height: 100%;
-    margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  margin: 10px;
 }
 
 #back-button {
-    align-self: flex-start; 
-    margin: 10px; 
+  align-self: flex-start;
+  margin: 10px;
 }
 
 #title {
-    margin-top: 50px; 
+  margin-top: 50px;
 }
 
 #text1 {
-    margin-bottom: 5px; 
+  margin-bottom: 5px;
 }
 
 #buildings {
-    margin-top: 5px; 
-    width: 300px;
-    padding: 5px;
+  margin-top: 5px;
+  width: 300px;
+  padding: 5px;
 }
 
 #text2 {
-    margin-bottom: 5px; 
+  margin-bottom: 5px;
 }
 
 #user-input {
-    margin-top: 5px; 
-    width: 300px;
-    padding: 5px;
+  margin-top: 5px;
+  width: 300px;
+  padding: 5px;
 }
 
 #output-button {
-    margin: 30px; 
-    width: 150px; 
-    padding: 5px;
-    font-family: 'Do Hyeon', sans-serif;
+  margin: 30px;
+  width: 150px;
+  padding: 5px;
+  font-family: "Do Hyeon", sans-serif;
 }
 
 #room_text {
-    margin-bottom:10px
+  margin-bottom: 10px;
 }
-
 
 #timetable {
-    width: auto; 
-    border-collapse: collapse;
-    table-layout: fixed; /* 셀의 너비를 고정 */
-    margin-bottom: 40px
+  width: auto;
+  border-collapse: collapse;
+  table-layout: fixed; /* 셀의 너비를 고정 */
+  margin-bottom: 40px;
 }
 
-#timetable th, #timetable td {
-    border: 1px solid black;
-    padding: 5px;
-    text-align: center;
-    width: 150px; 
+#timetable th,
+#timetable td {
+  border: 1px solid black;
+  padding: 5px;
+  text-align: center;
+  width: 150px;
 }
 
 #timetable th {
-    background-color: lightgray;
-    color: white;
+  background-color: lightgray;
+  color: white;
 }
-
-

@@ -1,86 +1,90 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <title>시간별 강의 분포 확인</title>
-  <link rel="stylesheet" href="../css/lecture_stat.css">
-  <link rel="stylesheet" href="https://pyscript.net/releases/2023.11.1/core.css" />
-  <script type="module" src="https://pyscript.net/releases/2023.11.1/core.js"></script> 
+  <head>
+    <meta charset="UTF-8" />
+    <title>시간별 강의 분포 확인</title>
+    <link rel="stylesheet" href="../css/lecture_stat.css" />
+    <link
+      rel="stylesheet"
+      href="https://pyscript.net/releases/2023.11.1/core.css"
+    />
+    <script
+      type="module"
+      src="https://pyscript.net/releases/2023.11.1/core.js"
+    ></script>
   </head>
   <py-config>
-    packages = [
-      "numpy", "pandas", "matplotlib", "seaborn"
-    ]
-    [[fetch]]
-        files = ['lecture_stat.py']
-        from = '../python'
-        to_folder = 'package'
+    packages = [ "numpy", "pandas", "matplotlib", "seaborn" ]
+    [[fetch]] 
+    files =['lecture_stat.py']
+    from = '../python'
+    to_folder = 'package'
   </py-config>
 
-<body>
+  <body>
     <div class="container">
-        <!-- 이전 페이지로 돌아가는 버튼 -->
-        <button onclick="window.history.back();" id="back-button">이전 페이지로</button>
+      <!-- 이전 페이지로 돌아가는 버튼 -->
+      <button onclick="window.history.back();" id="back-button">
+        이전 페이지로
+      </button>
 
-        <!-- 제목 -->
-        <h1 id="title">시간별 강의 분포 확인</h1>
-        <div class="dropset">
+      <!-- 제목 -->
+      <h1 id="title">시간별 강의 분포 확인</h1>
+      <div class="dropset">
         <div class="pair">
-        <!-- 드롭박스 제목 -->
-        <h3 id="text1">단과대학 선택</h3>
+          <!-- 드롭박스 제목 -->
+          <h3 id="text1">단과대학 선택</h3>
 
-        <!-- 아이템 드롭박스 -->
-        <select id="schools" py-change="update_majors">
-            <option value ="전체">전체</option>
-            <option value ="문과대학">문과대학</option>
-            <option value ="이과대학">이과대학</option>
-            <option value ="건축대학">건축대학</option>
-            <option value ="공과대학">공과대학</option>
-            <option value ="사회과학대학">사회과학대학</option>
-            <option value ="경영대학">경영대학</option>
-            <option value ="부동산과학원">부동산과학원</option>
-            <option value ="KU융합과학기술원">KU융합과학기술원</option>
-            <option value ="상허생명과학대학">상허생명과학대학</option>
-            <option value ="수의과대학">수의과대학</option>
-            <option value ="예술디자인대학">예술디자인대학</option>
-            <option value ="사범대학">사범대학</option>
-        </select>
+          <!-- 아이템 드롭박스 -->
+          <select id="schools" py-change="update_majors">
+            <option value="전체">전체</option>
+            <option value="문과대학">문과대학</option>
+            <option value="이과대학">이과대학</option>
+            <option value="건축대학">건축대학</option>
+            <option value="공과대학">공과대학</option>
+            <option value="사회과학대학">사회과학대학</option>
+            <option value="경영대학">경영대학</option>
+            <option value="부동산과학원">부동산과학원</option>
+            <option value="KU융합과학기술원">KU융합과학기술원</option>
+            <option value="상허생명과학대학">상허생명과학대학</option>
+            <option value="수의과대학">수의과대학</option>
+            <option value="예술디자인대학">예술디자인대학</option>
+            <option value="사범대학">사범대학</option>
+          </select>
         </div>
-      <div class="pair">
+        <div class="pair">
+          <!-- 드롭박스 제목 -->
+          <h3 id="text2">학과 선택</h3>
 
-        <!-- 드롭박스 제목 -->
-        <h3 id="text2">학과 선택</h3>
-
-        <!-- 아이템 드롭박스 -->
-        <select id="majors" disabled>
-            <option value ="전체">전체</option>
-        </select>
+          <!-- 아이템 드롭박스 -->
+          <select id="majors" disabled>
+            <option value="전체">전체</option>
+          </select>
         </div>
-      <div class="pair">
+        <div class="pair">
+          <!-- 드롭박스 제목 -->
+          <h3 id="text3">학년 선택</h3>
 
-        <!-- 드롭박스 제목 -->
-        <h3 id="text3">학년 선택</h3>
-
-        <!-- 아이템 드롭박스 -->
-        <select id="grades" disabled>
-            <option value ="전체">전체</option>
-            <option value ="1">1</option>
-            <option value ="2">2</option>
-            <option value ="3">3</option>
-            <option value ="4">4</option>
-        </select>
+          <!-- 아이템 드롭박스 -->
+          <select id="grades" disabled>
+            <option value="전체">전체</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
         </div>
-        </div>
+      </div>
 
-       <!-- 출력 버튼 -->
+      <!-- 출력 버튼 -->
       <button id="output-button" py-click="button_click_event">출력</button>
 
-      <h2 id="plot-title"></h5>
+      <h2 id="plot-title"></h2>
       <div id="plot"></div>
 
-       <script type="py">
+      <script type="py">
         from pyscript import document, display
-        
+
         import pandas as pd
         import numpy as np
         from copy import deepcopy
@@ -139,8 +143,7 @@
             ax.set_yticklabels(days, rotation=0)
             plt.subplots_adjust(top=1.0)
             display(fig, target="plot")
-      </script> 
+      </script>
     </div>
-
-</body>
+  </body>
 </html>
