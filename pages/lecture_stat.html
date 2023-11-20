@@ -88,6 +88,7 @@
         school = document.querySelector("#schools")
         grades_dropdown = document.querySelector("#grades")
         plotTitle = document.querySelector("#plot-title")
+        plot = document.querySelector("#plot")
 
         def update_majors(*args):
           # 단과대학이 "전체"가 아닐 때 학과 드롭다운을 활성화하고 해당 학과 목록을 업데이트
@@ -112,8 +113,17 @@
                   majors_dropdown.appendChild(option)
 
         def button_click_event(*args):
-          data = makestats_all()
-          plotTitle.innerText = "전체"
+          plot.innerHTML = ''
+          sch = school.value
+          major = majors_dropdown.value
+          grade = grades_dropdown.value
+          if sch == "전체":
+            data = makestats_all()
+          elif grade == "전체":
+            data = makestats_all(sch, major)
+          else:
+            data = makestats_all(sch, major, grade)
+
           if data is not None:
             days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
             hours = [str(i) for i in range(1, 24)]

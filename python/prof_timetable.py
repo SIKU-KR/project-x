@@ -6,13 +6,20 @@ from pyodide.http import open_url
 
 def getProflist():
     try:
-        # df = pd.read_csv(open_url("https://raw.githubusercontent.com/SIKU-KR/SIKU-KR.github.io/main/pages/process_final.csv"))
-        # df = pd.read_csv('process_final.csv')
         df = pd.read_csv(open_url("http://127.0.0.1:5500/pages/process_final.csv"))
         df.dropna(inplace=True)
-        room_set = set(df['교수'])
-        room_list = list(room_set)
-        return room_list
+        prof = list(df['교수'])
+        prof_splitted = set()
+        for i in prof:
+            if ',' in i:
+                temp = i.strip('"').split(',')
+                for j in temp:
+                    prof_splitted.add(j.strip())
+            else:
+                prof_splitted.add(i)
+        prof_splitted.remove('미배정')
+        prof_list = list(prof_splitted)
+        return prof_list
     except Exception:
         print('전처리 된 파일이 없습니다.')
 

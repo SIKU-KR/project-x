@@ -12,7 +12,7 @@
       "numpy", "pandas"
     ]
     [[fetch]]
-        files = ['prof_timetable.py', 'process_final.csv']
+        files = ['prof_timetable.py']
         from = '../python'
         to_folder = 'package'
   </py-config>
@@ -76,10 +76,14 @@
         def button_click_event(*args):
           user_input = document.querySelector("#user-input")
           input_val = user_input.value.strip()
+          if input_val == '미배정':
+            user_input.value = ''
+            return
           result_text = document.querySelector("#prof_text")
           result_text.innerText = input_val + "교수님"
           prof = input_val
           make_timetable(input_val)
+          user_input.value = ''
         
       </script> 
     </div>

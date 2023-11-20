@@ -8,7 +8,7 @@ df = pd.read_excel(file_name)
 print(df)
 
 # 두개의 칼럼만 필요할듯?
-selected_columns = ['교과목명', '강의요시/강의실', '담당교수','수강학부(과)/전공']
+selected_columns = ['교과목명', '강의요시/강의실', '담당교수','수강학부(과)/전공', '학년', '학수번호']
 
 df_selected = df[selected_columns]
 
@@ -24,11 +24,13 @@ for index, row in df.iterrows():
     times = row["강의요시/강의실"].split(", ")
     prof = row["담당교수"].strip()
     major = row["수강학부(과)/전공"]
+    grade = row["학년"]
+    sbjno = row["학수번호"]
     for time in times:
-        new_rows.append([name, time, prof, major])
+        new_rows.append([name, time, prof, major, grade, sbjno])
 
 # 새로운 DataFrame 생성
-new_df = pd.DataFrame(new_rows, columns=["과목명", "시간", "교수", "전공"])
+new_df = pd.DataFrame(new_rows, columns=["과목명", "시간", "교수", "전공", "학년", "학수번호"])
 
 # 결과 출력
 # new_df

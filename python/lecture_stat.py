@@ -12,7 +12,7 @@ college = {
         "지리학과", "미디어커뮤니케이션학과", "문화콘텐츠학과"
     ],
     "이과대학": [
-        "수학과", "물리학과", "화학과"
+        "수학과", "물리", "화학과"
     ],
     "건축대학": [
         "건축학부"
@@ -58,17 +58,24 @@ def get_majors(school):
 def makeTimeTable():
     pass
 
-def makestats_all():
+def makestats_all(school=None ,major=None, grade=None):
     dayDict = {'월':0,'화':1,'수':2,'목':3,'금':4,'토':5}
     template = np.zeros((6,23), int)
 
     try:
-        df = pd.read_csv(open_url("http://127.0.0.1:5500/pages/process_final.csv"))
+        df = pd.read_csv(open_url("http://127.0.0.1:5500/pages/process_final.csv"), dtype='str')
         df.dropna(inplace=True)
     except Exception:
         print('전처리 된 파일이 없습니다.')
-    df_sliced = df.loc[:, '강의실':]
-    # print(df_sliced)
+    
+    if school == None:
+        pass
+    elif grade == None:
+        df = df[df['전공'].str.contains(school) | df['전공'].str.contains(major)]
+    else:
+        df = df[df['전공'].str.contains(school) | df['전공'].str.contains(major)]
+        df = df[df['학년'].str.contains(grade)]
+        
     timetable = dict()
 
     for index, row in df.iterrows():
@@ -97,6 +104,8 @@ def makestats_all():
                 if room_info[day][time] == 1:
                     class_count_on_time[day][time] += 1
     return class_count_on_time
+
+
         
 
 def makestats_major(major):
