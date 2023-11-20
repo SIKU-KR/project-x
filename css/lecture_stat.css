@@ -1,0 +1,32 @@
+#body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+#back-button {
+    align-self: flex-start; 
+    margin: 10px; 
+}
+
+#title {
+    margin-top: 50px; 
+}
+
+#text1, #text2 {
+    margin-bottom: 5px; 
+}
+
+#schools, #majors {
+    margin-top: 5px; 
+    width: 300px;
+}

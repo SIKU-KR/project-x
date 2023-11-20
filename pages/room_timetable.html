@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>강의실 일주일 시간표 조회</title>
+  <link rel="stylesheet" href="../css/room_timetable.css">
+  <link rel="stylesheet" href="https://pyscript.net/releases/2023.11.1/core.css" />
+  <script type="module" src="https://pyscript.net/releases/2023.11.1/core.js"></script> 
+  </head>
+  <py-config>
+    packages = [
+      "numpy", "pandas"
+    ]
+    [[fetch]]
+        files = ['room_timetable.py']
+        from = '../python'
+        to_folder = 'package'
+  </py-config>
+
+<body>
+    <div class="container">
+        <!-- 이전 페이지로 돌아가는 버튼 -->
+        <button onclick="window.history.back();" id="back-button">이전 페이지로</button>
+
+        <!-- 제목 -->
+        <h1 id="title">강의실 일주일 시간표 조회</h1>
+
+        <!-- 드롭박스 제목 -->
+        <h5 id="text1">강의동 선택 (미선택 : 전체)</h5>
+
+        <!-- 아이템 드롭박스 -->
+        <select id="buildings" py-change="update_searchOptions">
+            <option value ="전체">전체</option>
+            <option value ="문">문과대학</option>
+            <option value ="이">이과대학</option>
+            <option value ="공">공과대학</option>
+            <option value ="신공">공과대학(신공)</option>
+            <option value ="법">법학관(종합강의동)</option>
+            <option value ="경영">경영대학(사회과학관)</option>
+            <option value ="동">동물생명과학대학</option>
+            <option value ="산학">산학협동관</option>
+            <option value ="생">생명환경과학대학</option>
+            <option value ="수">수의과대학</option>
+            <option value ="해봉">해봉부동산학관</option>
+            <option value ="건">건축대학</option>
+            <option value ="예">예술문화대학</option>
+            <option value ="사">교육과학관</option>
+            <option value ="언어원">언어교육원</option>
+            <option value ="새">새천년관</option>
+            <option value ="종강">종합강의동</option>
+            <option value ="중장비">중장비 실험동</option>
+            <option value ="상허관">상허연구관</option>
+            <option value ="창">창의관</option>
+        </select>
+
+        <!-- 드롭박스 제목 -->
+        <h5 id="text2">강의실 입력 (미입력 : 전체)</h5>
+
+        <!-- 사용자 입력창 -->
+        <input type="text" id="user-input" placeholder="입력하세요...", list="searchOptions">
+        
+        <datalist id="searchOptions">
+    
+        </datalist>
+        <!-- 출력 버튼 -->
+        <button id="output-button" py-click="button_click_event">출력</button>
+
+        <h2 id="room_text"> 정보를 입력해주세요 </h2>
+
+        <table id="timetable" border="1">
+        <thead>
+        <tr>
+            <th>시간/요일</th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+            <th>토</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- 데이터 행이 여기에 추가됩니다 -->
+        </tbody>
+    </table>
+
+       <script type="py">
+        from pyscript import document
+        import pandas as pd
+        import numpy as np
+        from copy import deepcopy
+        from pyodide.http import open_url
+        from package.room_timetable import make_timetable, getRoomlist
+
+        rooms = getRoomlist()
+        print(rooms)
+        dataset = document.querySelector("#searchOptions")
+
+        def update_searchOptions(*args):
+          building = document.querySelector("#buildings").value         
+          dataset.innerHTML = ''
+          for option_value in rooms:
+              if option_value.startswith(building):
+                  display_value = option_value.replace(building, '', 1)
+                  option = document.createElement('option')
+                  option.value = display_value
+                  dataset.appendChild(option)
+
+        def button_click_event(*args):
+          building = document.querySelector("#buildings")
+          selected = building.value
+          user_input = document.querySelector("#user-input")
+          input_val = user_input.value.strip()
+          result_text = document.querySelector("#room_text")
+          argument = selected + input_val
+          result_text.innerText = argument
+          room = argument
+          make_timetable(room)
+        
+      </script> 
+    </div>
+
+</body>
+</html>

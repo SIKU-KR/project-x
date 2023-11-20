@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>시간별 강의 분포 확인</title>
+  <link rel="stylesheet" href="../css/lecture_stat.css">
+  <link rel="stylesheet" href="https://pyscript.net/releases/2023.11.1/core.css" />
+  <script type="module" src="https://pyscript.net/releases/2023.11.1/core.js"></script> 
+  </head>
+  <py-config>
+    packages = [
+      "numpy", "pandas", "matplotlib"
+    ]
+    [[fetch]]
+        files = ['lecture_stat.py']
+        from = '../python'
+        to_folder = 'package'
+  </py-config>
+
+<body>
+    <div class="container">
+        <!-- 이전 페이지로 돌아가는 버튼 -->
+        <button onclick="window.history.back();" id="back-button">이전 페이지로</button>
+
+        <!-- 제목 -->
+        <h1 id="title">시간별 강의 분포 확인</h1>
+
+        <!-- 드롭박스 제목 -->
+        <h5 id="text1">단과대학 선택</h5>
+
+        <!-- 아이템 드롭박스 -->
+        <select id="schools" py-change="update_majors">
+            <option value ="전체">전체</option>
+            <option value ="문과대학">문과대학</option>
+            <option value ="이과대학">이과대학</option>
+            <option value ="건축대학">건축대학</option>
+            <option value ="공과대학">공과대학</option>
+            <option value ="사회과학대학">사회과학대학</option>
+            <option value ="경영대학">경영대학</option>
+            <option value ="부동산과학원">부동산과학원</option>
+            <option value ="KU융합과학기술원">KU융합과학기술원</option>
+            <option value ="상허생명과학대학">상허생명과학대학</option>
+            <option value ="수의과대학">수의과대학</option>
+            <option value ="예술디자인대학">예술디자인대학</option>
+            <option value ="사범대학">사범대학</option>
+        </select>
+
+        <!-- 드롭박스 제목 -->
+        <h5 id="text2">학과 선택</h5>
+
+        <!-- 아이템 드롭박스 -->
+        <select id="majors">
+            <option value ="전체">전체</option>
+        </select>
+
+       <script type="py">
+        from pyscript import document
+        import pandas as pd
+        import numpy as np
+        from copy import deepcopy
+        from pyodide.http import open_url
+        import matplotlib.pyplot as plt
+        from package.lecture_stat import get_majors
+
+        majors_dropdown = document.querySelector("#majors")
+        school = document.querySelector("#schools")
+
+        def update_majors(*args):
+            selected = school.value
+            majors_dropdown.innerHTML = ''
+            curr_majors = get_majors(selected)
+            print(curr_majors)
+            for major in curr_majors:
+                option = document.createElement("option")
+                option.value = major
+                option.innerHTML = major
+                majors_dropdown.appendChild(option)
+      </script> 
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 20px 0; /* ��ܿ� 20px�� ���� �߰� */
+    display: flex;
+    justify-content: center;
+    align-items: start; /* �߾� ���Ŀ��� ��� ���ķ� ���� */
+}
+
+.container {
+    text-align: center;
+}
+
+button {
+    display: block;
+    margin: 15px auto; /* ���Ʒ� 10px, �翷 auto�� ��� ���� */
+    width: 200px; /* ��� ��ư�� �ʺ� 200px�� ���� */
+    box-sizing: border-box; /* �е��� �׵θ��� �ʺ� ���Եǵ��� ���� */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+}
+
+th, td {
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #666;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
