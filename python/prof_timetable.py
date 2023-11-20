@@ -8,7 +8,7 @@ def getProflist():
     try:
         # df = pd.read_csv(open_url("https://raw.githubusercontent.com/SIKU-KR/SIKU-KR.github.io/main/pages/process_final.csv"))
         df = pd.read_csv('process_final.csv')
-        # df = pd.read_csv('https://raw.githubusercontent.com/SIKU-KR/SIKU-KR.github.io/main/python/process_final.csv')
+        df = pd.read_csv('https://raw.githubusercontent.com/SIKU-KR/SIKU-KR.github.io/main/python/process_final.csv?raw=true')
         df.dropna(inplace=True)
         room_set = set(df['교수'])
         room_list = list(room_set)
@@ -21,7 +21,7 @@ def make_timetable(prof):
                         '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30']
 
     try:
-        df = pd.read_csv(open_url("https://raw.githubusercontent.com/SIKU-KR/SIKU-KR.github.io/main/pages/process_final.csv"))
+        # df = pd.read_csv(open_url("https://raw.githubusercontent.com/SIKU-KR/SIKU-KR.github.io/main/pages/process_final.csv"))
         # df = pd.read_csv('../pages/process_final.csv')
         df.dropna(inplace=True)
     except FileNotFoundError:
