@@ -20,7 +20,8 @@ def make_timetable(prof):
                         '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30']
 
     try:
-        df = pd.read_csv(open_url("http://127.0.0.1:5500/pages/process_final.csv"))
+        #df = pd.read_csv(open_url("http://127.0.0.1:5500/pages/process_final.csv"))
+        df = pd.read_csv('../pages/process_final.csv')
         df.dropna(inplace=True)
     except FileNotFoundError:
         print('전처리 된 파일이 없습니다.')
