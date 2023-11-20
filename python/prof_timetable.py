@@ -5,29 +5,23 @@ from copy import deepcopy
 from pyodide.http import open_url
 
 def getProflist():
-    # try:
-    #     # df = pd.read_csv(open_url("https://raw.githubusercontent.com/SIKU-KR/SIKU-KR.github.io/main/pages/process_final.csv"))
-    #     # df = pd.read_csv('process_final.csv')
-    #     df = pd.read_csv('https://repo.codereview.online/ppark/project-x/-/raw/main/process_final.csv')
-    #     df.dropna(inplace=True)
-    #     room_set = set(df['교수'])
-    #     room_list = list(room_set)
-    #     return room_list
-    # except Exception:
-    #     print('전처리 된 파일이 없습니다.')
-    df = pd.read_csv('https://repo.codereview.online/ppark/project-x/-/raw/main/process_final.csv')
-    df.dropna(inplace=True)
-    room_set = set(df['교수'])
-    room_list = list(room_set)
-    return room_list
+    try:
+        # df = pd.read_csv(open_url("https://raw.githubusercontent.com/SIKU-KR/SIKU-KR.github.io/main/pages/process_final.csv"))
+        # df = pd.read_csv('process_final.csv')
+        df = pd.read_csv(open_url("http://127.0.0.1:5500/pages/process_final.csv"))
+        df.dropna(inplace=True)
+        room_set = set(df['교수'])
+        room_list = list(room_set)
+        return room_list
+    except Exception:
+        print('전처리 된 파일이 없습니다.')
 
 def make_timetable(prof):
     time_col = ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30',
                         '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30']
 
     try:
-        # df = pd.read_csv(open_url("https://raw.githubusercontent.com/SIKU-KR/SIKU-KR.github.io/main/pages/process_final.csv"))
-        # df = pd.read_csv('../pages/process_final.csv')
+        df = pd.read_csv(open_url("http://127.0.0.1:5500/pages/process_final.csv"))
         df.dropna(inplace=True)
     except FileNotFoundError:
         print('전처리 된 파일이 없습니다.')
