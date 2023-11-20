@@ -7,7 +7,7 @@ from pyodide.http import open_url
 def getProflist():
     try:
         # df = pd.read_csv(open_url("https://raw.githubusercontent.com/SIKU-KR/SIKU-KR.github.io/main/pages/process_final.csv"))
-        df = pd.read_csv('process_final.csv')
+        # df = pd.read_csv('process_final.csv')
         df = pd.read_csv('https://raw.githubusercontent.com/SIKU-KR/SIKU-KR.github.io/main/python/process_final.csv?raw=true')
         df.dropna(inplace=True)
         room_set = set(df['교수'])
