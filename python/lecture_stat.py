@@ -58,7 +58,7 @@ def get_majors(school):
 def makeTimeTable():
     pass
 
-def makestats_all(timetable):
+def makestats_all():
     dayDict = {'월':0,'화':1,'수':2,'목':3,'금':4,'토':5}
     template = np.zeros((6,23), int)
 
@@ -96,13 +96,8 @@ def makestats_all(timetable):
             for time in range(23):
                 if room_info[day][time] == 1:
                     class_count_on_time[day][time] += 1
-    for i in range(class_count_on_time.shape[0]):
-        plt.figure(figsize=(10, 4))
-        plt.bar(range(23), data[i])
-        plt.title(f'Dimension {i + 1}')
-        plt.xlabel('Time Slots')
-        plt.ylabel('Values')
-        plt.show()
+    return class_count_on_time
+        
 
 def makestats_major(major):
     pass

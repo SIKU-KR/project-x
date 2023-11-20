@@ -30,3 +30,17 @@
     margin-top: 5px; 
     width: 300px;
 }
+
+#output-button {
+    margin-top: 40px; 
+    width: 300px; 
+}
+
+#plot-title{
+    margin-top : 50px;
+    margin-bottom: 0px;
+}
+
+#plot {
+    margin-top: 0px;
+}
