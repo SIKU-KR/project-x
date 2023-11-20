@@ -95,10 +95,14 @@
         rooms = getRoomlist()
         print(rooms)
         dataset = document.querySelector("#searchOptions")
+        chosen_building = document.querySelector("#buildings")
+        user_input = document.querySelector("#user-input")
+        result_text = document.querySelector("#room_text")
 
         def update_searchOptions(*args):
-          building = document.querySelector("#buildings").value         
+          building = chosen_building.value         
           dataset.innerHTML = ''
+          user_input.value = ''
           for option_value in rooms:
               if option_value.startswith(building):
                   display_value = option_value.replace(building, '', 1)
@@ -107,11 +111,8 @@
                   dataset.appendChild(option)
 
         def button_click_event(*args):
-          building = document.querySelector("#buildings")
-          selected = building.value
-          user_input = document.querySelector("#user-input")
+          selected = chosen_building.value
           input_val = user_input.value.strip()
-          result_text = document.querySelector("#room_text")
           argument = selected + input_val
           result_text.innerText = argument
           room = argument
