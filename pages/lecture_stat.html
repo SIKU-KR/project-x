@@ -49,8 +49,20 @@
         <h5 id="text2">학과 선택</h5>
 
         <!-- 아이템 드롭박스 -->
-        <select id="majors">
+        <select id="majors" disabled>
             <option value ="전체">전체</option>
+        </select>
+
+        <!-- 드롭박스 제목 -->
+        <h5 id="text3">학년 선택</h5>
+
+        <!-- 아이템 드롭박스 -->
+        <select id="grades" disabled>
+            <option value ="전체">전체</option>
+            <option value ="1">1</option>
+            <option value ="2">2</option>
+            <option value ="3">3</option>
+            <option value ="4">4</option>
         </select>
 
        <script type="py">
@@ -60,21 +72,33 @@
         from copy import deepcopy
         from pyodide.http import open_url
         import matplotlib.pyplot as plt
-        from package.lecture_stat import get_majors
+        from package.lecture_stat import get_majors, makestats_all
 
         majors_dropdown = document.querySelector("#majors")
         school = document.querySelector("#schools")
+        grades_dropdown = document.querySelector("#grades")
 
         def update_majors(*args):
-            selected = school.value
-            majors_dropdown.innerHTML = ''
-            curr_majors = get_majors(selected)
-            print(curr_majors)
-            for major in curr_majors:
-                option = document.createElement("option")
-                option.value = major
-                option.innerHTML = major
-                majors_dropdown.appendChild(option)
+          # 단과대학이 "전체"가 아닐 때 학과 드롭다운을 활성화하고 해당 학과 목록을 업데이트
+          selected = school.value
+          majors_dropdown.innerHTML = ''
+          if selected == "전체":
+              majors_dropdown.disabled = True
+              grades_dropdown.disabled = True
+              option = document.createElement("option")
+              option.value = "전체"
+              option.innerHTML = "전체"
+              majors_dropdown.appendChild(option)
+          else:
+              majors_dropdown.disabled = False
+              grades_dropdown.disabled = False
+              curr_majors = get_majors(selected)
+              print(curr_majors)
+              for major in curr_majors:
+                  option = document.createElement("option")
+                  option.value = major
+                  option.innerHTML = major
+                  majors_dropdown.appendChild(option)
       </script> 
     </div>
 

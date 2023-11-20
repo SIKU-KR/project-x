@@ -3,9 +3,9 @@ import numpy as np
 from copy import deepcopy
 import matplotlib.pyplot as plt
 
-dayDict = {'월':0,'화':1,'수':2,'목':3,'금':4,'토':5}
 dayDict_reverse = {0:'Monday', 1:'Tuesday', 2:'Wednesday', 3:'Thursday', 4:'Friday', 5:'Sunday'}
 
+dayDict = {'월':0,'화':1,'수':2,'목':3,'금':4,'토':5}
 template = np.zeros((6,23), int)
 
 df = pd.read_csv('../pages/process_final.csv')
@@ -43,7 +43,7 @@ for room in timetable:
                 class_count_on_time[day][time] += 1
 
 # 각 차원별로 시각화
-for i in range(data.shape[0]):
+for i in range(class_count_on_time.shape[0]):
     plt.figure(figsize=(10, 4))
     plt.bar(range(23), data[i])
     plt.title(f'Dimension {i + 1}')

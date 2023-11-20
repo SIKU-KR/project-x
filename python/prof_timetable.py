@@ -11,7 +11,7 @@ def getProflist():
         room_set = set(df['교수'])
         room_list = list(room_set)
         return room_list
-    except FileNotFoundError:
+    except Exception:
         print('전처리 된 파일이 없습니다.')
 
 def make_timetable(prof):

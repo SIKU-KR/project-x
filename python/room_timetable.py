@@ -24,7 +24,7 @@ def make_timetable(room):
     try:
         df = pd.read_csv(open_url("http://127.0.0.1:5500/pages/process_final.csv"))
         df.dropna(inplace=True)
-    except FileNotFoundError:
+    except Exception:
         print('전처리 된 파일이 없습니다.')
           
     # 해당 강의실의 시간표 처리를 위한 변수들
