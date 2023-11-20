@@ -24,15 +24,21 @@
 
         <!-- 제목 -->
         <h1 id="title">빈 강의실 찾기</h1>
-
+        <div class="dropset">
+        <div class="pair">
         <!-- 드롭박스 제목 -->
-        <h5 id="text1">단과대학 선택</h5>
-
+        <h3 id="text1">단과대학 선택</h3>
+        
         <!-- 아이템 드롭박스 -->
         <select id="buildings">
             <option value ="문">문과대학</option>
             <option value ="이">이과대학</option>
-            <option value ="공">공과대학</option>
+            <option value ="공A">공과대학A</option>
+            <option value ="공B">공과대학B</option>
+            <option value ="공C">공과대학C</option>
+            <option value ="공D">공과대학D</option> 
+            <option value ="공E">공과대학E</option>
+            <option value ="공예">공과대학(예)</option>
             <option value ="신공">공과대학(신공)</option>
             <option value ="법">법학관(종합강의동)</option>
             <option value ="경영">경영대학(사회과학관)</option>
@@ -51,8 +57,10 @@
             <option value ="상허관">상허연구관</option>
             <option value ="창">창의관</option>
         </select>
+        </div>
+        <div class="pair">
         <!-- 드롭박스 제목 -->
-        <h5 id="text2">시간 선택</h5>
+        <h3 id="text2">시간 선택</h3>
 
         <!-- 아이템 드롭박스 -->
         <select id="time">
@@ -80,9 +88,10 @@
             <option value ="22">22</option>
             <option value ="23">23</option>
         </select>
-
+        </div>
+        <div class="pair">
         <!-- 드롭박스 제목 -->
-        <h5 id="text3">요일 선택</h5>
+        <h3 id="text3">요일 선택</h3>
 
         <!-- 아이템 드롭박스 -->
         <select id="day">
@@ -93,6 +102,8 @@
             <option value ="금">금</option>
             <option value ="토">토</option>
         </select>
+        </div>
+        </div>
        <!-- 출력 버튼 -->
       <button id="output-button" py-click="button_click_event">출력</button>
 

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
 body, html {
     margin: 0;
     padding: 0;
@@ -11,6 +13,22 @@ body, html {
     align-items: center;
     justify-content: flex-start;
     height: 100%;
+    font-family: 'Do Hyeon', sans-serif;
+}
+
+.dropset {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.pair {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    margin: 10px;
 }
 
 #back-button {
@@ -29,6 +47,7 @@ body, html {
 #buildings {
     margin-top: 5px; 
     width: 300px;
+    padding: 5px;
 }
 
 #text2 {
@@ -38,11 +57,14 @@ body, html {
 #user-input {
     margin-top: 5px; 
     width: 300px;
+    padding: 5px;
 }
 
 #output-button {
-    margin: 40px; 
-    width: 300px; 
+    margin: 30px; 
+    width: 150px; 
+    padding: 5px;
+    font-family: 'Do Hyeon', sans-serif;
 }
 
 #room_text {
