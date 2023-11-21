@@ -16,8 +16,8 @@
   <py-config>
     packages = [ "pandas", "numpy" ] 
     [[fetch]] 
-    files = ['empty_room.py'] 
-    from ='../python' 
+    files = ['empty_room.py']
+    from='../python' 
     to_folder = 'package'
   </py-config>
 
@@ -43,22 +43,21 @@
             <option value="공B">공과대학B</option>
             <option value="공C">공과대학C</option>
             <option value="공D">공과대학D</option>
-            <option value="공E">공과대학E</option>
-            <option value="공예">공과대학(예)</option>
             <option value="신공">공과대학(신공)</option>
-            <option value="법">법학관(종합강의동)</option>
+            <option value="종강">법학관(종합강의동)</option>
             <option value="경영">경영대학(사회과학관)</option>
             <option value="동">동물생명과학대학</option>
             <option value="산학">산학협동관</option>
             <option value="생">생명환경과학대학</option>
             <option value="수">수의과대학</option>
-            <option value="해봉">해봉부동산학관</option>
+            <option value="부">해봉부동산학관</option>
             <option value="건">건축대학</option>
             <option value="예">예술문화대학</option>
+            <option value="공예">공예관</option>
             <option value="사">교육과학관</option>
-            <option value="언어원">언어교육원</option>
+            <!--option value="언어원">언어교육원</option-->
             <option value="새">새천년관</option>
-            <option value="종강">종합강의동</option>
+            <!--option value="종강">종합강의동</option-->
             <option value="중장비">중장비 실험동</option>
             <option value="상허관">상허연구관</option>
             <option value="창">창의관</option>
@@ -113,7 +112,13 @@
       <!-- 출력 버튼 -->
       <button id="output-button" py-click="button_click_event">출력</button>
 
-      <h4 id="result"></h4>
+      <h3 id="result"></h3>
+      <table id="results-table">
+        <thead>
+          <tr id="table-headers"></tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
 
       <script type="py">
         from pyscript import document
@@ -129,6 +134,8 @@
         days = document.querySelector("#day")
         times = document.querySelector("#time")
         result_area = document.querySelector("#result")
+        table_headers = document.querySelector("#table-headers")
+        table_body = document.querySelector("#table-body")
 
         def button_click_event(*args):
           b = buildings.value
@@ -137,10 +144,40 @@
           result = get_emptylist(b, t, d)
           print(b, t, d)
           print(result)
-          result_str = ''
+
+          result_area.innerText = f'{d}요일 {times.value}교시'
+
+          keys = []
           for i in result:
-            result_str += i + '\n'
-          result_area.innerText = result_str
+              keys.append(int(i[len(b)]))
+          keys = set(sorted(keys))
+
+          table_headers.innerHTML = ''
+          table_body.innerHTML = ''
+
+          result_dict = {}
+          for key in keys:
+              result_dict[str(key)] = []
+
+          for i in result:
+              result_dict[i[len(b)]].append(i)
+
+          for key in keys:
+              header = document.createElement("th")
+              header.innerText = f'{key}층'
+              table_headers.appendChild(header)
+
+          # Find the maximum number of rooms in any floor
+          max_rooms = max(len(rooms) for rooms in result_dict.values())
+
+          # Insert rows for each room
+          for i in range(max_rooms):
+              row = document.createElement('tr')
+              for key in sorted(result_dict):
+                  cell = document.createElement('td')
+                  cell.innerText = result_dict[key][i] if i < len(result_dict[key]) else ''
+                  row.appendChild(cell)
+              table_body.appendChild(row)
       </script>
     </div>
   </body>

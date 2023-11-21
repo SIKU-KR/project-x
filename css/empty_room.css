@@ -44,7 +44,8 @@ html {
 
 #text1,
 #text2,
-#text3 {
+#text3,
+#result {
   margin-bottom: 5px;
 }
 
@@ -61,4 +62,14 @@ html {
   width: 150px;
   padding: 5px;
   font-family: "Do Hyeon", sans-serif;
+}
+
+#results-table {
+  border-collapse: collapse;
+}
+
+#results-table th,
+#results-table td {
+  text-align: center;
+  padding: 5px;
 }
