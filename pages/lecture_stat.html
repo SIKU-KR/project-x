@@ -117,6 +117,7 @@
               grades_dropdown.disabled = False
               curr_majors = get_majors(selected)
               print(curr_majors)
+              curr_majors.sort()
               for major in curr_majors:
                   option = document.createElement("option")
                   option.value = major

@@ -75,6 +75,7 @@
         from package.prof_timetable import make_timetable, getProflist
 
         profs = getProflist()
+        profs.sort()
         print(profs)
         dataset = document.querySelector("#searchOptions")
 

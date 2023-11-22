@@ -118,12 +118,16 @@
           building = chosen_building.value
           dataset.innerHTML = ''
           user_input.value = ''
+          datalist = []
           for option_value in rooms:
               if option_value.startswith(building):
-                  display_value = option_value.replace(building, '', 1)
-                  option = document.createElement('option')
-                  option.value = display_value
-                  dataset.appendChild(option)
+                  datalist.append(option_value)
+          datalist.sort()
+          for option_value in datalist:
+              display_value = option_value.replace(building, '', 1)
+              option = document.createElement('option')
+              option.value = display_value
+              dataset.appendChild(option)
 
         def button_click_event(*args):
           selected = chosen_building.value
