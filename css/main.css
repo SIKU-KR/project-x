@@ -1,13 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
 
+
+
 body,
 html {
   height: 100%;
-  margin: 0;
+  margin: 0 auto;
   padding: 20px 0;
-  display: flex;
-  justify-content: center;
-  align-items: start;
+
+}
+
+.title-container {
+  text-align: left; /* 제목을 왼쪽 정렬합니다 */
+  margin-left: 40px; /* 좌측 여백을 추가합니다 */
+  margin-bottom: 20px; /* 버튼 영역과의 거리를 조정합니다 */
 }
 
 .container {

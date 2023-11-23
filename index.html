@@ -1,25 +1,45 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>메인 페이지</title>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-</head>
-<body>
-    <div class="container">
-    <a href="https://konkuk.ac.kr">
-        <img id="image" src="./rss/UI_Mark.jpg" alt="logo" width="300px">
-    </a>
-        <!-- Button 1 -->
-        <button onclick="window.location.href='pages/empty_room.html';">빈 강의실 조회</button>
-
-        <!-- Button 2 -->
-        <button onclick="window.location.href='pages/room_timetable.html';">강의실 일주일 시간표 조회</button>
-
-        <!-- Button 3 -->
-        <button onclick="window.location.href='pages/prof_timetable.html';">교수님 일주일 시간표 조회</button>
-
-        <!-- Button 4 -->
-        <button onclick="window.location.href='pages/lecture_stat.html';">시간별 강의 분포 확인하기</button>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>메인</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+  </head>
+  <body>
+    <div class="title-container">
+      <div class="line">
+        <span class="emphasis">건</span>
+        <span class="normal">국대</span>
+      </div>
+      <div class="line">
+        <span class="emphasis">수</span>
+        <span class="normal">업의 모든</span>
+      </div>
+      <div class="line">
+        <span class="emphasis">정</span>
+        <span class="normal">보를 알려준다!</span>
+      </div>
+      </div>
     </div>
-</body>
+    <div class="btn-container">
+      <div class="button" onclick="window.location.href='pages/empty_room.html';">
+        <img src="rss/emptyroom.png" width="30" />
+        <span class="button-text">빈 강의실 조회하기</span>
+      </div>
+      <div class="button" onclick="window.location.href='pages/room_timetable.html';">
+        <img src="rss/roomtime.png" width="30" />
+        <span class="button-text">강의실 일주일 시간표 조회하기</span>
+      </div>
+      <div class="button" onclick="window.location.href='pages/prof_timetable.html';">
+        <img src="rss/prof.png" width="30" />
+        <span class="button-text">교수님 일주일 시간표 조회하기</span>
+      </div>
+      <div class="button" onclick="window.location.href='pages/lecture_stat.html';">
+        <img src="rss/stat.png" width="30" />
+        <span class="button-text">시간표 강의 분포 확인하기</span>
+      </div>
+      <!-- Repeat for other buttons -->
+    </div>
+    <h3 id="credit">Project-X Konkuk 2진법</h3>
+  </body>
 </html>
